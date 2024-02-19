@@ -20,6 +20,11 @@ public class BlogService {
         return blogRepository.save(addArticleRequest.toEntity());
     }
 
+    @Transactional
+    public Long savePost(AddArticleRequest addArticleRequest) {
+        return blogRepository.save(addArticleRequest.toEntity()).getId();
+    }
+
     public List<Article> findAllArticle() {
         return blogRepository.findAll();
     }
