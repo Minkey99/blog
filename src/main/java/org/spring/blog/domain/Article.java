@@ -2,6 +2,7 @@ package org.spring.blog.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.cglib.core.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
@@ -32,5 +33,6 @@ public class Article {
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
+        this.updatedAt = LocalDateTime.now();
     }
 }

@@ -14,12 +14,11 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api")
 public class BlogApiController {
 
     final BlogService blogService;
 
-    @PostMapping("/articles")
+    @PostMapping("/api/articles")
     public ResponseEntity<Article> addArticle(
             @RequestBody AddArticleRequest addArticleRequest
     ) {
@@ -29,7 +28,7 @@ public class BlogApiController {
                 .body(savedArticle);
     }
 
-    @GetMapping("/articles")
+    @GetMapping("/api/articles")
     public ResponseEntity<List<ArticleResponse>> findAllArticles() {
         List<ArticleResponse> article = blogService.findAllArticle()
                 .stream()
@@ -40,7 +39,7 @@ public class BlogApiController {
                 .body(article);
     }
 
-    @GetMapping("/articles/{id}")
+    @GetMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> findArticle(
             @PathVariable Long id
     ) {
@@ -50,7 +49,7 @@ public class BlogApiController {
                 .body(new ArticleResponse(article));
     }
 
-    @PutMapping("/articles/{id}")
+    @PutMapping("/api/articles/{id}")
     public ResponseEntity<Article> updateArticle(
             @PathVariable Long id,
             @RequestBody UpdateArticleRequest request
@@ -61,7 +60,7 @@ public class BlogApiController {
                 .body(article);
     }
 
-    @DeleteMapping("/articles/{id}")
+    @DeleteMapping("/api/articles/{id}")
     public ResponseEntity<ArticleResponse> deleteArticle(
             @PathVariable Long id
     ) {

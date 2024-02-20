@@ -6,8 +6,6 @@ import org.spring.blog.dto.AddArticleRequest;
 import org.spring.blog.dto.ArticleListViewResponse;
 import org.spring.blog.dto.ArticleViewResponse;
 import org.spring.blog.service.BlogService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,11 +20,11 @@ public class BlogViewController {
 
     @PostMapping("/articles")
     public String addArticle(
-            AddArticleRequest addArticleRequest
+            @RequestBody AddArticleRequest addArticleRequest
     ) {
         blogService.savePost(addArticleRequest);
 
-        return "redirect:/";
+        return "board/articleList.html";
     }
 
     @GetMapping("/articles")

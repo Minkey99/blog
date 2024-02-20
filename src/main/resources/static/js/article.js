@@ -19,23 +19,23 @@ if (modifyButton) {
 
 modifyButton.addEventListener('click',event => {
     let params = new URLSearchParams(location.search);
-    let id = new params.get('id');
+    let id = parseInt(params.get("id"));
 
         fetch(`/api/articles/${id}`, {
-            method: 'PUT',
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                title: document.getElementById('title').value,
-                content: document.getElementById('content').value
+                title: document.getElementById("title").value,
+                content: document.getElementById("content").value
              })
         })
 
-
     .then(() => {
-        alert('수정이 완료되었습니다.');
-        location.replace(`/articles/${id}`);
+            alert('수정이 완료되었습니다.');
+            location.replace(`/articles/${id}`);
         });
     });
 }
+
