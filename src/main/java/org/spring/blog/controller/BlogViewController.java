@@ -43,7 +43,7 @@ public class BlogViewController {
         Article article =  blogService.findById(id);
         model.addAttribute("article", new ArticleViewResponse(article));
 
-        return "board/article.html";
+        return "board/articleDetail.html";
     }
 
     @GetMapping("/new-article")

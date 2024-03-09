@@ -1,3 +1,26 @@
+const createButton = document.getElementById('create-btn');
+
+if(createButton) {
+    createButton.addEventListener('click', event => {
+        let id = document.getElementById('article-id').value;
+        // JSON 형식으로 데이터를 보내기 위한 설정
+        fetch(`/new-article`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: id }) // 서버가 요구하는 형식에 맞게 데이터 전송
+        })
+            .then(response => response.json()) // 응답을 JSON으로 변환
+            .then(data => {
+                console.log(data); // 응답 로그 출력
+                alert('Post creation successful');
+                location.replace('/articles');
+            })
+            .catch(error => console.error('Error:', error)); // 오류 처리
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     fetchArticles();
 });
@@ -20,11 +43,11 @@ function createArticleCard(article, index) {
     card.className = 'card';
     card.innerHTML = `
     <div class="container">
-      <div class="card-header">NO. ${index + 1}</div>
-      <div class="card-body">
-        <h5 class="card-title">${article.title}</h5>
-        <p class="card-text">${article.content}</p>
-        <a href="/articles/${index + 1}" class="btn btn-primary">View</a>
+      <div class="card-header">NO. ${article.id}</div> 
+      <div class="card-body"> 
+        <h5 class="title">${article.title}</h5>
+        <p class="content">${article.content}</p>
+        <a href="/articles/${article.id}" class="btn btn-primary">View</a>
       </div>
     </div>
   `;
